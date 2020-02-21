@@ -17,6 +17,14 @@ function App() {
     updateTextField(event.target.value);
   }
 
+  function deleteItem(id) {
+    updateItems(prevItems => {
+      return prevItems.filter((item, index) => {
+        return index !== id;
+      });
+    });
+  }
+
   return (
     <div className="container">
       <div className="heading">
@@ -31,7 +39,7 @@ function App() {
       <div>
         <ul>
           {items.map((item, i) => (
-            <Item key={i} name={item} />
+            <Item key={i} id={i} name={item} onClicked={deleteItem} />
           ))}
         </ul>
       </div>
